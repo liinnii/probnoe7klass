@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Русский язык, 7 класс</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Marck+Script&display=swap">
+<style>
+:root{--night:#12101c;--indigo:#2f3363;--blue:#5b7bb8;--sky:#aebbe3;--mist:#e9eff9;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*:before,*:after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:#fff;color:var(--night);font:18px/1.55 "PT Sans",Arial,sans-serif}
+main{max-width:720px;margin:0 auto;padding:16px 14px 48px}
+h1{font:400 38px/1.1 "Marck Script","Comic Sans MS",cursive;color:var(--indigo);margin:8px 0 12px}
+h2{font-size:22px;margin:0 0 10px;color:var(--indigo)}
+h3{font-size:18px;margin:18px 0 6px;color:var(--indigo)}
+nav{display:flex;gap:6px;overflow-x:auto;padding:4px 0 12px;position:sticky;top:env(safe-area-inset-top,0px);background:#fff;z-index:2}
+nav button{flex:none;font:inherit;font-weight:700;padding:8px 16px;border:2px solid var(--indigo);background:#fff;color:var(--indigo);border-radius:22px;cursor:pointer}
+nav button[aria-selected=true]{background:var(--indigo);color:#fff}
+button:focus-visible,textarea:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+section{display:none;background:var(--mist);border-radius:14px;padding:18px}
+section.on{display:block}
+.q{padding:14px 0;border-bottom:1px solid var(--sky)}
+.q:last-child{border:0}
+.q p{margin:0 0 10px;font-weight:700}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opts button,.btn{font:inherit;padding:9px 16px;border:2px solid var(--indigo);background:#fff;color:var(--night);border-radius:10px;cursor:pointer}
+.opts button:hover:not(:disabled){background:var(--sky)}
+.opts button.ok{background:var(--indigo);color:#fff}
+.opts button.ok:before{content:"✓ "}
+.opts button.bad{background:#fff;border-style:dashed;text-decoration:line-through;color:var(--blue)}
+.opts button.bad:before{content:"✕ ";text-decoration:none;display:inline-block}
+.opts button:disabled{cursor:default}
+.fb{margin:10px 0 0;font-size:16px;color:var(--indigo)}
+.rule{background:#fff;border-left:6px solid var(--blue);padding:12px 14px;margin:10px 0;border-radius:0 10px 10px 0}
+.wrap{overflow-x:auto;background:#fff;border-radius:10px}
+table{border-collapse:collapse;width:100%;min-width:480px}
+td,th{border:1px solid var(--sky);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--indigo);color:#fff}
+.score{font:400 56px/1 "Marck Script",cursive;color:var(--indigo)}
+.btn{background:var(--indigo);color:#fff;font-weight:700;margin-top:10px}
+label.ck{display:block;padding:5px 0}
+label.ck input{width:20px;height:20px;accent-color:var(--indigo);vertical-align:-4px;margin-right:6px}
+textarea{width:100%;min-height:140px;font:inherit;padding:12px;border:2px solid var(--indigo);border-radius:10px;background:#fff;color:var(--night)}
+ul{padding-left:22px}
+</style>
+</head>
+<body>
+<main>
+<h1>Русский язык, 7 класс</h1>
+<nav role="tablist" id="tabs"></nav>
+
+<section id="intro">
+<h2>Давай знакомиться</h2>
+<p>Расскажи о себе: как тебя зовут, что любишь делать, что нравится в школе? А потом ответь на три вопроса, так я пойму, с чего начать. Правильных ответов здесь нет.</p>
+<div id="introQ"></div>
+<button class="btn" onclick="show('diag')">Начнём проверку</button>
+</section>
+
+<section id="diag">
+<h2>Проверим, что ты уже знаешь</h2>
+<p>Выбирай ответ. Если не уверен, угадывай: после ответа я объясню.</p>
+<div id="diagQ"></div>
+<div id="diagRes"></div>
+</section>
+
+<section id="lesson">
+<h2>НЕ с разными частями речи</h2>
+<h3>Три вопроса вместо зубрёжки</h3>
+<div class="rule"><b>1.</b> Есть «а» (не большой, <i>а</i> огромный)? Пиши <b>раздельно</b>.<br><b>2.</b> Это глагол или деепричастие? Пиши <b>раздельно</b> (не решил, не глядя).<br><b>3.</b> Можно заменить одним словом без «не» (невысокий = низкий)? Пиши <b>слитно</b>.</div>
+<div class="wrap"><table>
+<tr><th>Часть речи</th><th>Слитно</th><th>Раздельно</th></tr>
+<tr><td>Прилагательное</td><td>есть синоним: <i>неверный</i> (ложный)</td><td>есть «а» или слова «совсем, вовсе»: <i>не новый, а старый</i></td></tr>
+<tr><td>Причастие</td><td>нет зависимых слов: <i>непрочитанная книга</i></td><td>есть зависимое слово: <i>не прочитанная мной книга</i></td></tr>
+<tr><td>Наречие на -о/-е</td><td>нет «а»: <i>неправильно</i></td><td>есть «а»: <i>не правильно, а ошибочно</i></td></tr>
+<tr><td>Глагол</td><td>если без «не» не бывает: <i>ненавидеть</i></td><td>почти всегда: <i>не знаю</i></td></tr>
+</table></div>
+<h3>Попробуй сам</h3>
+<p>Слитно или раздельно?</p>
+<div id="prac"></div>
+</section>
+
+<section id="write">
+<h2>Напиши 3–4 предложения</h2>
+<p>Выбери тему:</p>
+<ul><li>Мой любимый день недели</li><li>Что бы я изменил в своём городе</li><li>Лучший совет, который я получал</li></ul>
+<div class="rule">Используй хотя бы одно слово с «не» и одно предложение с перечислением (однородными членами).</div>
+<textarea placeholder="Пиши здесь"></textarea>
+<h3>Проверь себя</h3>
+<div id="chk"></div>
+</section>
+
+<section id="sum">
+<h2>Твой результат</h2>
+<div id="sumBody"></div>
+</section>
+</main>
+<script>
+var TABS=[["intro","1. Знакомство · 5′"],["diag","2. Проверка · 15′"],["lesson","3. Новая тема · 15′"],["write","4. Пишем · 5′"],["sum","5. Итог · 5′"]];
+var D=[
+{t:"НЕ с причастием",q:"Книга лежала на столе: (не)прочитанная.",o:["слитно","раздельно"],a:0,e:"Причастие без зависимых слов: непрочитанная."},
+{t:"НЕ с прилагательным",q:"Он (не)высокий, а низкий.",o:["слитно","раздельно"],a:1,e:"Есть «а»: не высокий, а низкий."},
+{t:"НЕ с наречием",q:"Ты ответил (не)правильно.",o:["слитно","раздельно"],a:0,e:"Наречие на -о без «а»: неправильно (= ошибочно)."},
+{t:"Н и НН",q:"Выбери верное:",o:["стеклянная ваза","стекляная ваза"],a:0,e:"Исключение: стеклянный, оловянный, деревянный пишутся с НН."},
+{t:"-тся и -ться",q:"Мы пошли в школу учи...",o:["-ться","-тся"],a:0,e:"Что делать? Учиться. Значит, -ться."},
+{t:"Деепричастный оборот",q:"Сколько запятых: «Подойдя к окну я увидел снег»?",o:["0","1","2"],a:1,e:"Оборот выделяется: Подойдя к окну, я увидел снег."},
+{t:"Однородные члены",q:"Сколько запятых: «Мы купили хлеб молоко и сыр»?",o:["0","1","2"],a:1,e:"Одна, после «хлеб». Перед одиночным «и» запятая не нужна."},
+{t:"Части речи",q:"Какая часть речи слово «бегущий» в «бегущий мальчик»?",o:["прилагательное","причастие","глагол"],a:1,e:"Отвечает на вопрос «какой?» и образовано от глагола: причастие."}
+];
+var P=[
+{q:"(Не)большой, а огромный дом.",o:["слитно","раздельно"],a:1,e:"Есть «а»: не большой, а огромный."},
+{q:"(Не)радостный взгляд.",o:["слитно","раздельно"],a:0,e:"Можно заменить словом «грустный»: нерадостный."},
+{q:"(Не)купленный вовремя билет.",o:["слитно","раздельно"],a:1,e:"Есть зависимое слово «вовремя»: не купленный вовремя."},
+{q:"(Не)смотря на дождь, мы пошли гулять.",o:["слитно","раздельно"],a:0,e:"Предлог «несмотря на» пишется слитно."},
+{q:"Он, (не)глядя, взял чашку.",o:["слитно","раздельно"],a:1,e:"Деепричастие с «не» пишется раздельно: не глядя."},
+{q:"Задача оказалась (не)сложной, а лёгкой.",o:["слитно","раздельно"],a:1,e:"Есть «а»: не сложной, а лёгкой."},
+{q:"Он поступил (не)честно.",o:["слитно","раздельно"],a:0,e:"Нет «а», можно заменить словом «подло»: нечестно."},
+{q:"Я (не)знаю ответа.",o:["слитно","раздельно"],a:1,e:"Глагол с «не» пишется раздельно: не знаю."}
+];
+var CHK=["Я проверил слова с «не»","Я проверил запятые при перечислении","Я проверил запятые при оборотах","Каждое предложение закончено","В тексте понятная мысль"];
+var res=null,prof={};
+var INTRO=[{k:"mark",q:"Какая у тебя сейчас оценка по русскому?",o:["2–3","4","5"]},{k:"hard",q:"Что даётся труднее всего?",o:["правила","запятые","сочинения и изложения","не знаю"]},{k:"goal",q:"Чего хочешь добиться?",o:["подтянуть оценку","писать без ошибок","готовиться к ОГЭ заранее","просто интересно"]}];
+(function(){var box=document.getElementById("introQ");INTRO.forEach(function(it,i){var d=document.createElement("div");d.className="q";var p=document.createElement("p");p.textContent=(i+1)+". "+it.q;d.appendChild(p);var o=document.createElement("div");o.className="opts";
+ it.o.forEach(function(t){var b=document.createElement("button");b.textContent=t;b.onclick=function(){prof[it.k]=t;Array.prototype.forEach.call(o.children,function(x){x.className=""});b.className="ok"};o.appendChild(b)});
+ d.appendChild(o);box.appendChild(d)})})();
+function show(id){TABS.forEach(function(t){document.getElementById(t[0]).classList.toggle("on",t[0]===id)});
+ Array.prototype.forEach.call(document.querySelectorAll("#tabs button"),function(b){b.setAttribute("aria-selected",b.dataset.id===id)});
+ if(id==="sum")renderSum();window.scrollTo(0,0)}
+var nav=document.getElementById("tabs");
+TABS.forEach(function(t){var b=document.createElement("button");b.textContent=t[1];b.dataset.id=t[0];b.setAttribute("role","tab");b.onclick=function(){show(t[0])};nav.appendChild(b)});
+function quiz(box,list,done){var got=[],cnt=0;
+ list.forEach(function(it,i){var d=document.createElement("div");d.className="q";
+  var p=document.createElement("p");p.textContent=(i+1)+". "+it.q;d.appendChild(p);
+  var o=document.createElement("div");o.className="opts";var fb=document.createElement("p");fb.className="fb";
+  it.o.forEach(function(txt,k){var b=document.createElement("button");b.textContent=txt;
+   b.onclick=function(){Array.prototype.forEach.call(o.children,function(x,j){x.disabled=true;if(j===it.a)x.className="ok"});
+    if(k!==it.a)b.className="bad";got[i]=k===it.a;fb.textContent=it.e;cnt++;if(cnt===list.length)done(got)};
+   o.appendChild(b)});
+  d.appendChild(o);d.appendChild(fb);box.appendChild(d)})}
+quiz(document.getElementById("diagQ"),D,function(g){
+ var ok=g.filter(Boolean).length,weak=[];D.forEach(function(it,i){if(!g[i])weak.push(it.t)});
+ res={ok:ok,weak:weak};
+ document.getElementById("diagRes").innerHTML='<div class="rule"><span class="score">'+ok+' из '+D.length+'</span><br>'+(weak.length?'Подтянем: '+weak.join(", ")+'.':'Отлично, все темы усвоены!')+'</div><button class="btn" onclick="show(\'lesson\')">Дальше: новая тема</button>'});
+quiz(document.getElementById("prac"),P,function(){});
+var ch=document.getElementById("chk");
+CHK.forEach(function(t){var l=document.createElement("label");l.className="ck";l.innerHTML='<input type="checkbox">';l.appendChild(document.createTextNode(t));ch.appendChild(l)});
+function renderSum(){var h="";
+ if(!res){h='<p>Сначала пройди проверку на первой вкладке.</p><button class="btn" onclick="show(\'diag\')">К проверке</button>'}
+ else{h='<span class="score">'+res.ok+' из '+D.length+'</span>';
+  h+=res.weak.length?'<h3>Что подтянем вместе</h3><ul><li>'+res.weak.join('</li><li>')+'</li></ul>':'<h3>Всё получилось!</h3><p>Можно браться за более сложные темы.</p>';
+  h+='<h3>Что дальше</h3><p>Составим план занятий под твою цель'+(prof.goal?': <b>'+prof.goal+'</b>':'')+', чтобы закрыть эти темы'+(prof.hard&&prof.hard!=="не знаю"?' и разобраться, почему сложно: '+prof.hard:'')+'.</p>'}
+ document.getElementById("sumBody").innerHTML=h}
+show("intro");
+</script>
+</body>
+</html>
